@@ -32,13 +32,12 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno304
 TARGET_BOARD_SUFFIX := _32
 
 # Architecture
-TARGET_ARCH := arm
-TARGET_CPU_ABI  := armeabi-v7a
+TARGET_CPU_VARIANT := krait
+TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a7
+TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_SMP := true
-ARCH_ARM_HAVE_TLS_REGISTER := true
 
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
@@ -70,7 +69,7 @@ TARGET_USES_C2D_COMPOSITION := true
 USE_OPENGL_RENDERER := true
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_msm
+#TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 TARGET_UNIFIED_DEVICE := true
 
@@ -84,9 +83,6 @@ BOARD_MKBOOTIMG_ARGS := --dt device/huawei/scl/dt.img --ramdisk_offset 0x0200000
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
-
-# Logging
-TARGET_USES_LOGD := false
 
 # Partitions
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -105,23 +101,24 @@ TARGET_POWERHAL_VARIANT := qcom
 
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
+TARGET_USES_QCOM_BSP := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += \
-    device/huawei/scl/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#    device/huawei/scl/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    bootanim.te \
-    diag.te \
-    file.te \
-    file_contexts \
-    init.te \
-    mm-qcamerad.te \
-    mpdecision.te \
-    netd.te \
-    system_server.te 
+#BOARD_SEPOLICY_UNION += \
+#    bootanim.te \
+#    diag.te \
+#    file.te \
+#    file_contexts \
+#    init.te \
+#    mm-qcamerad.te \
+#    mpdecision.te \
+#    netd.te \
+#    system_server.te 
 
 # Vold
 BOARD_VOLD_MAX_PARTITIONS := 65

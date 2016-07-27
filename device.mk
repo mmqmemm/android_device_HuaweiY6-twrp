@@ -14,10 +14,6 @@
 # limitations under the License.
 #
 
-# Inherit common language setup
-$(call inherit-product, build/target/product/full_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
 # Inherit y530 vendor setup
 $(call inherit-product-if-exists, vendor/huawei/y6/y6-vendor.mk)
 
