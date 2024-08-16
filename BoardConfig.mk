@@ -91,7 +91,7 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_USES_QCOM_BSP := true
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+# include device/qcom/sepolicy/sepolicy.mk
 
 #BOARD_SEPOLICY_DIRS += \
 #    device/huawei/scale/sepolicy
