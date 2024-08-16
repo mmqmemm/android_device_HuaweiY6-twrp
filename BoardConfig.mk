@@ -53,6 +53,10 @@ BOARD_KERNEL_PAGESIZE    := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_PREBUILT_KERNEL := device/huawei/scale/prebuilt/kernel
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x02000000 --tags_offset 0x01E00000 --dt $(LOCAL_PATH)/prebuilt/dt.img
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_KERNEL_IMAGE_NAME := Image
+#TARGET_KERNEL_SOURCE := kernel/huawei/scale
+#TARGET_KERNEL_CONFIG := scale-64_defconfig
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
