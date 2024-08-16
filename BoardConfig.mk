@@ -50,7 +50,7 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 androidboot.selinux=permissive
 BOARD_KERNEL_BASE        := 0x80000000
 BOARD_KERNEL_PAGESIZE    := 2048
-# BOARD_KERNEL_SEPARATED_DT := true
+BOARD_KERNEL_SEPARATED_DT := true
 TARGET_PREBUILT_KERNEL := device/huawei/scale/prebuilt/kernel
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x02000000 --tags_offset 0x01E00000 --dt $(LOCAL_PATH)/prebuilt/dt.img
 
@@ -59,7 +59,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x01400000 
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 50331648
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x01900000
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1288491008
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1860648960
 BOARD_VENDORIMAGE_PARTITION_SIZE := 536870912
@@ -104,5 +104,23 @@ TW_EXCLUDE_TWRPAPP := true
 TW_INCLUDE_NTFS_3G := true
 TW_EXCLUDE_SUPERSU := true
 
-# PB Flags
-PB_TORCH_PATH := "/sys/class/leds/led:torch_0"
+# SHRP Configuration
+SHRP_DARK := true
+SHRP_MAINTAINER := mmqm
+SHRP_DEVICE_CODE := scale
+SHRP_EDL_MODE := 0
+SHRP_EDL_MODE := 0
+SHRP_INTERNAL := /sdcard
+SHRP_EXTERNAL := /external_sd
+SHRP_OTG := /usb_otg
+SHRP_CUSTOM_FLASHLIGHT := true
+SHRP_FLASH := 1
+SHRP_FLASH_MAX_BRIGHTNESS := 200
+SHRP_FONP_1 := /sys/class/leds:torch-light0/brightness
+SHRP_FONP_2 := /sys/class/leds:torch-light/brightness
+SHRP_REC := /dev/block/platform/soc/bootdevice/by-name/recovery
+
+# Recovery Type
+SHRP_AB := false
+SHRP_REC_TYPE := Treble
+SHRP_DEVICE_TYPE := A_Only

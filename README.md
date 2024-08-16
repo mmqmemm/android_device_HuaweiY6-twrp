@@ -1,4 +1,4 @@
-## PitchBlack Recovery Project device tree for Honor 4A (scale) ##
+## TeamWin Recovery Project device tree for Honor 4A (scale) ##
 
 =========================================
 
