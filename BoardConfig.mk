@@ -1,5 +1,7 @@
 LOCAL_PATH := device/huawei/scale
 
+TARGET_BOARD_VENDOR := huawei
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := scale
 
@@ -91,7 +93,7 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_USES_QCOM_BSP := true
 
 # SELinux
-# include device/qcom/sepolicy/sepolicy.mk
+include device/qcom/sepolicy/sepolicy.mk
 
 #BOARD_SEPOLICY_DIRS += \
 #    device/huawei/scale/sepolicy
@@ -113,11 +115,12 @@ BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # Recovery
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
+TARGET_RECOVERY_PIXEL_FORMAT := ABGR_8888
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery.fstab
 
 # TWRP
-RECOVERY_VARIANT := omni
+RECOVERY_VARIANT := twrp
+TWHAVE_SELINUX := true
 TW_THEME := portrait_hdpi
 DEVICE_RESOLUTION := 720x1280
 TW_INCLUDE_CRYPTO := true
@@ -133,9 +136,7 @@ TW_DEFAULT_LANGUAGE := zh_CN
 TW_EXTRA_LANGUAGES := true
 TW_EXCLUDE_TWRPAPP := true
 TW_INCLUDE_NTFS_3G := true
-
-#Ignore Missing Dependencies
-ALLOW_MISSING_DEPENDENCIES=true
+TW_EXCLUDE_SUPERSU := true
 
 # PB Flags
 PB_TORCH_PATH := "/sys/class/leds/led:torch_0"

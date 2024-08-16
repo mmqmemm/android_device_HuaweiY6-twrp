@@ -1,4 +1,4 @@
-PBRP DEVICE TREE TWRP FOR HUAWEI HONOR 4A (Y6)
+## PitchBlackRecoveryProject device tree for Honor 4A (scale) ##
 
 * How to compile:
 
