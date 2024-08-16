@@ -92,23 +92,6 @@ TARGET_POWERHAL_VARIANT := qcom
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_USES_QCOM_BSP := true
 
-# SELinux
-include device/qcom/sepolicy/sepolicy.mk
-
-#BOARD_SEPOLICY_DIRS += \
-#    device/huawei/scale/sepolicy
-
-#BOARD_SEPOLICY_UNION += \
-#    bootanim.te \
-#    diag.te \
-#    file.te \
-#    file_contexts \
-#    init.te \
-#    mm-qcamerad.te \
-#    mpdecision.te \
-#    netd.te \
-#    system_server.te 
-
 # Vold
 BOARD_VOLD_MAX_PARTITIONS := 65
 BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
