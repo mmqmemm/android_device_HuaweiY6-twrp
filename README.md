@@ -1,9 +1,4 @@
-ANDROID DEVICE TREE TWRP FOR HUAWEI HONOR 4A (Y6)
-ANY VERSION
-
-
-EFRAN -TEAM PHOENIX
-https://www.facebook.com/Team-Phoenix-1719991991571980/
+PBRP DEVICE TREE TWRP FOR HUAWEI HONOR 4A (Y6)
 
 * How to compile:
 
@@ -14,13 +9,10 @@ https://www.facebook.com/Team-Phoenix-1719991991571980/
 
 3. source build/envsetup.sh 
 
-4. lunch omni_scl-eng 
+4. lunch omni_scale-eng 
 
-5. mkdir -p out/target/product/scl/obj/KERNEL_OBJ
+5. mkdir -p out/target/product/scale/obj/KERNEL_OBJ
 
-6. mkdir -p out/target/product/scl/obj/KERNEL_OBJ/usr
+6. mkdir -p out/target/product/scale/obj/KERNEL_OBJ/usr
 
 7. make recoveryimage
-
-
-

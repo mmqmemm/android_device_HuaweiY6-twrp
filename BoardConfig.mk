@@ -1,26 +1,7 @@
-#
-# Copyright (C) 2015 The CyanogenMod Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# config.mk
-#
-# Product-specific compile-time definitions.
-#
-
-LOCAL_PATH := device/huawei/scl
+LOCAL_PATH := device/huawei/scale
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := Huaweiy6, HuaweiHonor4A
+TARGET_OTA_ASSERT_DEVICE := scale
 
 # Bootloader
 TARGET_NO_BOOTLOADER := true
@@ -78,24 +59,30 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 an
 BOARD_KERNEL_BASE        := 0x80000000
 BOARD_KERNEL_PAGESIZE    := 2048
 BOARD_KERNEL_SEPARATED_DT := true
-TARGET_PREBUILT_KERNEL := device/huawei/scl/kernel
-BOARD_MKBOOTIMG_ARGS := --dt device/huawei/scl/dt.img --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
+TARGET_PREBUILT_KERNEL := device/huawei/scale/prebuilt/kernel
+BOARD_MKBOOTIMG_ARGS := --dt device/huawei/scale/prebuilt/dt.img --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Partitions
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x01400000 
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x01900000 
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1288491008
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 1860648960
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
-BOARD_FLASH_BLOCK_SIZE := 131072 
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x01900000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1288491008
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 1860648960
+BOARD_VENDORIMAGE_PARTITION_SIZE := 536870912
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_USES_VENDORIMAGE := true
+BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_USES_MKE2FS := true
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+TARGET_COPY_OUT_VENDOR := vendor
+
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
@@ -107,7 +94,7 @@ TARGET_USES_QCOM_BSP := true
 include device/qcom/sepolicy/sepolicy.mk
 
 #BOARD_SEPOLICY_DIRS += \
-#    device/huawei/scl/sepolicy
+#    device/huawei/scale/sepolicy
 
 #BOARD_SEPOLICY_UNION += \
 #    bootanim.te \
@@ -139,6 +126,16 @@ RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_NO_REAL_SDCARD := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TARGET_RECOVERY_DEVICE_DIRS += device/huawei/scl
+TARGET_RECOVERY_DEVICE_DIRS += device/huawei/scale
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_DEFAULT_BRIGHTNESS := "160"
+TW_DEFAULT_LANGUAGE := zh_CN
+TW_EXTRA_LANGUAGES := true
+TW_EXCLUDE_TWRPAPP := true
+TW_INCLUDE_NTFS_3G := true
 
+#Ignore Missing Dependencies
+ALLOW_MISSING_DEPENDENCIES=true
+
+# PB Flags
+PB_TORCH_PATH := "/sys/class/leds/led:torch_0"
