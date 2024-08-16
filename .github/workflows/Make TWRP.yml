@@ -1,4 +1,4 @@
-name:  Build
+name: Recovery Build
 
 on:
   workflow_dispatch:
@@ -6,11 +6,11 @@ on:
       MANIFEST_URL:
         description: 'MANIFEST_URL (if want to use SSH keys, use git@github.com:XXXXX)'
         required: true
-        default: 'https://github.com/PitchBlackRecoveryProject/manifest_pb'
+        default: 'https://github.com/SHRP/manifest'
       MANIFEST_BRANCH:
         description: 'MANIFEST_BRANCH'
         required: true
-        default: 'android-9.0'
+        default: 'v3_9.0'
       DEVICE_TREE_URL:
         description: 'DEVICE_TREE_URL'
         required: true
@@ -18,23 +18,17 @@ on:
       DEVICE_TREE_BRANCH:
         description: 'DEVICE_TREE_BRANCH'
         required: true
-        default: 'pbrp'
+        default: 'shrp'
       DEVICE_PATH:
         description: 'DEVICE_PATH'
         required: true
         default: 'device/huawei/scale'
-      VENDOR_TREE_URL:
-        description: 'VENDOR_TREE_URL (if no vendor tree, leave blank)'
+      COMMON_TREE_URL:
+        description: 'COMMON_TREE_URL (if no common tree, leave blank)'
         required: false
-        default: 'https://github.com/PitchBlackRecoveryProject/vendor_pb'
-      VENDOR_TREE_BRANCH:
-        description: 'VENDOR_TREE_BRANCH (if no vendor tree, leave blank)'
+      COMMON_PATH:
+        description: 'COMMON_PATH (if no common tree, leave blank)'
         required: false
-        default: 'Ust'
-      VENDOR_PATH:
-        description: 'VENDOR_PATH (if no vendor tree, leave blank)'
-        required: false
-        default: 'vendor/pb'
       DEVICE_NAME:
         description: 'DEVICE_NAME'
         required: true
@@ -107,8 +101,8 @@ jobs:
         mkdir workspace
         cd workspace
         echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
-        git config --global user.name "Nico170420"
-        git config --global user.email "b170420nc@gmail.com"
+        git config --global user.name "mominqimiang"
+        git config --global user.email "3227495621@qq.com"
         repo init --depth=1 -u ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.MANIFEST_BRANCH }}
       id: pwd
           
@@ -122,12 +116,12 @@ jobs:
         git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
-    - name: Clone vendor tree
+    - name: Clone common tree
       if: |
-        github.event.inputs.VENDOR_TREE_URL != null
-        && github.event.inputs.VENDOR_PATH != null
+        github.event.inputs.COMMON_TREE_URL != null
+        && github.event.inputs.COMMON_PATH != null
       run: |
-        git clone ${{ github.event.inputs.VENDOR_TREE_URL }} -b ${{ github.event.inputs.VENDOR_TREE_BRANCH }} ./${{ github.event.inputs.VENDOR_PATH }} --depth=1
+        git clone ${{ github.event.inputs.COMMON_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.COMMON_PATH }}
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Check Build Tree
@@ -167,6 +161,6 @@ jobs:
           Manifest: ${{ github.event.inputs.MANIFEST_BRANCH }}
           Device: ${{ github.event.inputs.DEVICE_NAME }}
           Target: recovery.img
-          Version:Android9
+          Version:Android
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
