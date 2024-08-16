@@ -36,22 +36,15 @@ TARGET_HW_DISK_ENCRYPTION := false
 EXTENDED_FONT_FOOTPRINT := true
 
 # Graphics
-TARGET_USES_OVERLAY := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-TARGET_HARDWARE_3D := false
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 TARGET_USES_ION := true
-TARGET_USES_NEW_ION_API :=true
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
-TARGET_USES_C2D_COMPOSITION := true
-USE_OPENGL_RENDERER := true
 
 # Init
-#TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-TARGET_UNIFIED_DEVICE := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 androidboot.selinux=permissive
@@ -59,10 +52,7 @@ BOARD_KERNEL_BASE        := 0x80000000
 BOARD_KERNEL_PAGESIZE    := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_PREBUILT_KERNEL := device/huawei/scale/prebuilt/kernel
-BOARD_MKBOOTIMG_ARGS := --dt device/huawei/scale/prebuilt/dt.img --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
-
-# Lights
-TARGET_PROVIDES_LIBLIGHT := true
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x02000000 --tags_offset 0x01E00000 --dt $(LOCAL_PATH)/prebuilt/dt.img
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -103,10 +93,6 @@ RECOVERY_VARIANT := twrp
 TWHAVE_SELINUX := true
 TW_THEME := portrait_hdpi
 DEVICE_RESOLUTION := 720x1280
-TW_INCLUDE_CRYPTO := true
-TW_NO_SCREEN_TIMEOUT := true
-RECOVERY_SDCARD_ON_DATA := true
-BOARD_HAS_NO_REAL_SDCARD := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_RECOVERY_DEVICE_DIRS += device/huawei/scale
